@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import GlowBackground from './components/GlowBackground';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -7,9 +8,14 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Terminal from './components/Terminal';
 import Contact from './components/Contact';
-import Footer from './components/Footer'; // 1. Import your Footer component
+import Footer from './components/Footer';
 
 export default function App() {
+  // Enforce top-scroll on initial load or refresh
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative selection:bg-slate-800 selection:text-white font-sans overflow-x-hidden">
       {/* Background ambient lighting */}
@@ -31,7 +37,7 @@ export default function App() {
         </div>
       </main>
 
-      {/* 2. Replace the inline footer with your component */}
+      {/* Footer */}
       <Footer />
     </div>
   );
