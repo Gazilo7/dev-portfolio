@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
-import profilePic from '../assets/Shekwoyinugza.jpg'; // Place your picture in src/assets/
+import profilePic from '../assets/Shekwoyinugaza_.JPG'; // Place your picture in src/assets/
 
 export default function Hero() {
   const myName = "Shekwoyinugaza Markus"; // Update with your actual name
