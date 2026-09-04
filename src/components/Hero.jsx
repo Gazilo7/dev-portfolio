@@ -18,10 +18,10 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-2"
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
+            <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight font-['Fira_Code',monospace]">
               {myName}
             </h1>
-            <p className="text-xl font-medium text-indigo-400">
+            <p className="text-xl font-medium text-indigo-400 font-['Fira_Code',monospace]">
               {myTitle}
             </p>
           </motion.div>
@@ -30,7 +30,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg text-slate-400 max-w-2xl leading-relaxed mx-auto lg:mx-0"
+            className="text-lg text-slate-400 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-['Inter',sans-serif]"
           >
             Software engineering and computer science student based in Nigeria. Bridging the gap between statistical analytics and robust full-stack platforms using Python, PHP, and JavaScript.
           </motion.p>
@@ -76,8 +76,8 @@ export default function Hero() {
           </div>
 
           {/* Status Badge */}
-          <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 px-3 py-1 bg-emerald-500/90 text-slate-950 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg">
-            <span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
+          <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 px-3 py-1 bg-emerald-500/90 text-slate-950 rounded-full text-xs font-semibold flex items-center gap-1.5 shadow-lg"><span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-100 border-2 border-emerald-500"></span>
             </span>
             Available for Work
