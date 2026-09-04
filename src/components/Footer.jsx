@@ -28,7 +28,7 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/Shekwoyinugaza Markus"
+            href="https://linkedin.com/in/Shekwoyinugaza_Markus"
             target="_blank"
             rel="noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
@@ -52,7 +52,7 @@ export default function Footer() {
             Instagram
           </a>
           <a
-            href="https://facebook.com/Shekwoyinugaza Markus"
+            href="https://facebook.com/Shekwoyinugaza_Markus"
             target="_blank"
             rel="noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
