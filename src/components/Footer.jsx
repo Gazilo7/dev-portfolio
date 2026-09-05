@@ -28,14 +28,6 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com/in/Shekwoyinugaza_Markus"
-            target="_blank"
-            rel="noreferrer"
-            className="text-slate-400 hover:text-indigo-400 transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
             href="https://twitter.com/Shekwoyinugaza"
             target="_blank"
             rel="noreferrer"
