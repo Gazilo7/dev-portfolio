@@ -11,9 +11,8 @@ export default function Footer() {
         
         {/* Left: Name & Copyright */}
         <div className="text-center md:text-left font-mono space-y-0.5">
-          <p className="text-slate-200 text-sm font-medium">Shekwoyinugaza Markus</p>
-          <p className="text-slate-500 text-xs">
-            © {new Date().getFullYear()} Built with React & Tailwind CSS.
+          <p className="text-sm text-slate-500 font-mono">
+            © {new Date().getFullYear()} 2026 Shekwoyinugaza Markus // All rights reserved.
           </p>
         </div>
 
