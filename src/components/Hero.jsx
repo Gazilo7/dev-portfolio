@@ -4,7 +4,7 @@ import profilePic from '../assets/Shekwoyinugaza.JPG'; // Place your picture in 
 
 export default function Hero() {
   const myName = "Shekwoyinugaza Markus"; // Update with your actual name
-  const myTitle = "Software Engineering Student & Developer";
+  const myTitle = "Full-stack Developer & AI-Driven Solutions Engineer";
 
   return (
     <section id="hero" className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden z-10">
@@ -32,7 +32,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg text-slate-400 max-w-2xl leading-relaxed mx-auto lg:mx-0 font-['Inter',sans-serif]"
           >
-            Software engineering and computer science student based in Nigeria. Bridging the gap between statistical analytics and robust full-stack platforms using Python, PHP, and JavaScript.
+            Building high-conversion digital platforms, custom POS terminals, and AI-enhanced business tools. Combining full-stack engineering with modern AI workflows and quantitative analytics to automate daily operations.
           </motion.p>
 
           <motion.div
