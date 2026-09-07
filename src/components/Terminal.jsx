@@ -10,11 +10,14 @@ export default function Terminal() {
 
   const [input, setInput] = useState('');
   const [history, setHistory] = useState(initialHistory);
-  const terminalEndRef = useRef(null);
+  const containerRef = useRef(null);
   const inputRef = useRef(null);
 
+  // Auto-scroll ONLY the terminal box, preventing full-page scroll jumps
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (containerRef.current) {
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+    }
   }, [history]);
 
   const handleTerminalClick = () => {
@@ -116,7 +119,10 @@ export default function Terminal() {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 h-[400px] overflow-y-auto flex flex-col gap-4 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+          <div 
+            ref={containerRef}
+            className="p-6 h-[400px] overflow-y-auto flex flex-col gap-4 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent"
+          >
             {history.map((line, index) => (
               <div key={index} className="flex flex-col">
                 {line.content}
@@ -137,7 +143,6 @@ export default function Terminal() {
                 autoComplete="off"
               />
             </div>
-            <div ref={terminalEndRef} />
           </div>
         </div>
       </motion.div>
