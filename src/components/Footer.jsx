@@ -22,7 +22,7 @@ export default function Footer() {
           <a
             href="https://github.com/Gazilo7"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
           >
             GitHub
@@ -30,7 +30,7 @@ export default function Footer() {
           <a
             href="https://twitter.com/Shekwoyinugaza"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
           >
             X
@@ -38,15 +38,15 @@ export default function Footer() {
           <a
             href="https://instagram.com/gazilo7"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
           >
             Instagram
           </a>
           <a
-            href="https://facebook.com/Shekwoyinugaza_Markus"
+            href="https://facebook.com/profile.php?id=61554852573017"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
           >
             Facebook
@@ -54,7 +54,7 @@ export default function Footer() {
           <a
             href="https://wa.me/+2349052467059"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-400 transition-colors"
           >
             WhatsApp
