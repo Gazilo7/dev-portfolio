@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
-import { FolderGit2, ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { FolderGit2, Github, ArrowUpRight } from 'lucide-react';
 
 const projects = [
   {
     title: "Retail & Boutique Inventory System",
     description: "A business-focused stock management system designed to track inventory in real-time, generate automated low-stock alerts, and streamline daily sales logging for retail owners.",
     tags: ["PHP", "MySQL", "Tailwind CSS", "JavaScript"],
-    liveUrl: "#", // Replace with live URL when ready
-    githubUrl: "#", // Replace with GitHub repository link when ready
+    liveUrl: "#",
+    githubUrl: "#",
     featured: true
   },
   {
