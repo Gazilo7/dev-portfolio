@@ -11,11 +11,11 @@ export default function Experience() {
       highlights: ['Statistical data modeling with Python', 'Backend scripting with PHP & SQL', 'Local server architecture using XAMPP']
     },
     {
-      role: 'Full-Stack & DApp Development',
-      institution: 'Independent Projects',
-      period: '2025 - 2026',
-      description: 'Engineered web applications integrated with blockchain SDKs and deployed interactive interfaces with modern frontend tooling.',
-      highlights: ['Pi Network SDK integration for authentication & testnet payments', 'Responsive UI development with Tailwind CSS & React']
+      role: 'Full-Stack Web & Commercial Solutions',
+      institution: 'Independent Projects & Freelance Builds',
+      period: '2025 - Present',
+      description: 'Architecting business platforms, point-of-sale systems, and interactive web tools tailored for client workflows and Web3 integration.',
+      highlights: ['Custom business management platforms (POS, Inventory, PropTech)', 'Pi Network SDK integration for authentication & testnet payments', 'Responsive UI development with Tailwind CSS & React']
     }
   ];
 
@@ -73,9 +73,9 @@ export default function Experience() {
                     <div>
                       <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
                         {exp.role}
-                      </h3>
-                      <p className="text-indigo-300 text-sm font-medium">{exp.institution}</p>
-                    </div></div>
+                      </h3><p className="text-indigo-300 text-sm font-medium">{exp.institution}</p>
+                    </div>
+                  </div>
                   <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800 w-fit">
                     <Calendar className="w-3.5 h-3.5 text-indigo-400" />
                     <span>{exp.period}</span>
