@@ -165,10 +165,7 @@ export default function Projects() {
               Featured Solutions & Projects
             </h2>
           </div>
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono bg-slate-900/60 px-3 py-1.5 rounded-full border border-slate-800/80 w-fit">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-            <span>Interactive View</span>
-          </div>
+          
         </div>
 
         {/* Option 1: Animated Category Filter Tabs */}
