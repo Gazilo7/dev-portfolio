@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, ArrowUpRight, Sparkles, X, Play } from 'lucide-react';
+import { FolderGit2, Sparkles, X, Play } from 'lucide-react';
 import InventoryDemo from './InventoryDemo';
 import PosDemo from './PosDemo';
 import RealEstateDemo from './RealEstateDemo';
@@ -180,28 +180,33 @@ export default function Projects() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-3 sm:p-6"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-5xl my-auto"
+              className="relative w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl my-auto max-h-[85vh] flex flex-col overflow-hidden"
             >
-              {/* Close Button Header */}
-              <div className="flex justify-end mb-2">
+              {/* Sticky Top Bar for Close Action */}
+              <div className="flex justify-between items-center px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-10 shrink-0">
+                <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
+                  Live PoC Preview
+                </span>
                 <button
                   onClick={() => setActiveDemo(null)}
-                  className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-700 transition-all shadow-lg"
+                  className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-700 transition-all"
                 >
                   <X className="w-4 h-4" /> Close Demo
                 </button>
               </div>
 
-              {/* Render Selected Demo Component */}
-              {activeDemo === 'inventory' && <InventoryDemo />}
-              {activeDemo === 'pos' && <PosDemo />}
-              {activeDemo === 'realestate' && <RealEstateDemo />}
+              {/* Internal Scrollable Body */}
+              <div className="p-3 sm:p-6 overflow-y-auto flex-1">
+                {activeDemo === 'inventory' && <InventoryDemo />}
+                {activeDemo === 'pos' && <PosDemo />}
+                {activeDemo === 'realestate' && <RealEstateDemo />}
+              </div>
             </motion.div>
           </motion.div>
         )}
