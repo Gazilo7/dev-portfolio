@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, Sparkles, X, Play } from 'lucide-react';
+import { Sparkles, X, Play } from 'lucide-react';
 import InventoryDemo from './InventoryDemo';
 import PosDemo from './PosDemo';
 import RealEstateDemo from './RealEstateDemo';
@@ -74,6 +74,19 @@ export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeDemo, setActiveDemo] = useState(null);
 
+  // Lock body scroll when a modal is active
+  useEffect(() => {
+    if (activeDemo) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [activeDemo]);
+
   const filteredProjects = activeCategory === "All"
     ? projects
     : projects.filter(p => p.category === activeCategory);
@@ -84,9 +97,6 @@ export default function Projects() {
         
         {/* Section Title */}
         <div className="mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-4">
-            <FolderGit2 className="w-3.5 h-3.5" /> Commercial Proof of Concepts
-          </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             Featured Solutions & Engine Builds
           </h2>
@@ -202,7 +212,7 @@ export default function Projects() {
               </div>
 
               {/* Internal Scrollable Body */}
-              <div className="p-3 sm:p-6 overflow-y-auto flex-1">
+              <div className="p-3 sm:p-6 overflow-y-auto overscroll-contain flex-1">
                 {activeDemo === 'inventory' && <InventoryDemo />}
                 {activeDemo === 'pos' && <PosDemo />}
                 {activeDemo === 'realestate' && <RealEstateDemo />}
