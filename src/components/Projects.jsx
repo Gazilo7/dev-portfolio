@@ -1,208 +1,211 @@
-import { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FolderGit2, ArrowUpRight, Sparkles } from 'lucide-react';
+import { FolderGit2, ArrowUpRight, Sparkles, X, Play } from 'lucide-react';
+import InventoryDemo from './InventoryDemo';
+import PosDemo from './PosDemo';
+import RealEstateDemo from './RealEstateDemo';
 
 const categories = ["All", "E-Commerce", "FinTech", "PropTech", "Operations", "Analytics"];
 
 const projects = [
   {
+    id: "inventory",
     title: "Retail & Boutique Inventory System",
-    description: "A business-focused stock management system designed to track inventory in real-time, generate automated low-stock alerts, and streamline daily sales logging for retail owners.",
+    description: "A business-focused stock management system designed to track inventory in real-time, generate dynamic reorder alerts, and provide stock valuation.",
     category: "E-Commerce",
     badgeLabel: "E-Commerce & Retail",
-    tags: ["PHP", "MySQL", "Tailwind CSS", "JavaScript"],
-    liveUrl: "#",
+    tags: ["React", "Tailwind CSS", "JavaScript", "State Management"],
+    hasInteractiveDemo: true,
     githubUrl: "#"
   },
   {
+    id: "pos",
     title: "Restaurant & Pharmacy POS System",
-    description: "A point-of-sale billing terminal handling quick billing, instant digital invoice generation, and daily cash flow auditing to replace paper logbooks.",
+    description: "A point-of-sale billing terminal handling quick billing, instant digital invoice generation, and real-time revenue analytics.",
     category: "FinTech",
     badgeLabel: "FinTech & Payments",
-    tags: ["PHP", "MySQL", "JavaScript", "XAMPP"],
-    liveUrl: "#",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    hasInteractiveDemo: true,
     githubUrl: "#"
   },
   {
+    id: "realestate",
     title: "Real Estate & Property Listing Portal",
-    description: "A property catalog dashboard allowing agents to list properties, filter listings by price/location, and convert buyers directly via automated WhatsApp/email inquiries.",
+    description: "A high-conversion real estate platform with price filtering, automated lead generation via direct WhatsApp booking, and AI listing descriptions.",
     category: "PropTech",
-    badgeLabel: "Real Estate Tech",
-    tags: ["PHP", "MySQL", "JavaScript", "Tailwind CSS"],
-    liveUrl: "#",
+    badgeLabel: "PropTech",
+    tags: ["React", "Tailwind CSS", "AI Integration"],
+    hasInteractiveDemo: true,
     githubUrl: "#"
   },
   {
+    id: "fitness",
     title: "Gym & Fitness Membership Platform",
-    description: "A client management portal handling member registration, class scheduling, and automated subscription tracking to streamline fitness business operations.",
+    description: "A complete portal for tracking recurring subscriptions, managing member access passes, and automated membership status logs.",
     category: "Operations",
-    badgeLabel: "Business Operations",
-    tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
-    liveUrl: "#",
+    badgeLabel: "Operations Management",
+    tags: ["React", "Tailwind CSS", "JavaScript"],
+    hasInteractiveDemo: false,
     githubUrl: "#"
   },
   {
+    id: "web3pay",
     title: "Pi Network Web3 Payment DApp",
-    description: "Web3 financial integration utilizing the Pi Network SDK to process authentication and testnet crypto transactions directly inside web applications.",
+    description: "An integrated Web3 payment gateway prototype leveraging the Pi Network SDK for sandbox account authentication and testnet transactions.",
     category: "FinTech",
-    badgeLabel: "FinTech & Web3",
-    tags: ["JavaScript", "HTML5", "Web3 SDK", "REST API"],
-    liveUrl: "#",
+    badgeLabel: "Web3 Integration",
+    tags: ["JavaScript", "Pi SDK", "Web3 Payment API"],
+    hasInteractiveDemo: false,
     githubUrl: "#"
   },
   {
+    id: "analytics",
     title: "Statistical Data Analytics Suite",
-    description: "Quantitative analysis environment using Python and statsmodels to run ANOVA procedures, model trends, and export business intelligence data.",
+    description: "A quantitative analytical dashboard performing automated statistical calculations, two-way ANOVA models, and interactive visualizations.",
     category: "Analytics",
     badgeLabel: "Data Analytics",
-    tags: ["Python", "statsmodels", "Jupyter", "Pandas"],
-    liveUrl: "#",
+    tags: ["Python", "JavaScript", "Statsmodels"],
+    hasInteractiveDemo: false,
     githubUrl: "#"
   }
 ];
 
-function Card({ project }) {
-  const cardRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
-
-  // Explicit string definition avoids JSX inline syntax parser conflicts
-  const spotlightGradient = `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(99, 102, 241, 0.15), transparent 40%)`;
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.3 }}
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      className="group relative bg-slate-900/40 border border-slate-800/80 rounded-xl p-6 flex flex-col justify-between overflow-hidden hover:border-indigo-500/50 transition-colors"
-    >
-      {/* Option 2: Dynamic Cursor Spotlight Overlay */}
-      <div
-        className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
-        style={{ background: spotlightGradient }}
-      /><div className="relative z-10">
-        <div className="flex items-center justify-between mb-4">
-          <span className="text-xs font-mono text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-full border border-indigo-500/20">
-            {project.badgeLabel}
-          </span>
-          <div className="flex items-center gap-3 text-slate-400">
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-              title="Source Code"
-            >
-              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-              </svg>
-            </a>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-              title="Live Demo"
-            >
-              <ArrowUpRight className="w-5 h-5 text-indigo-400 group-hover:text-indigo-300" />
-            </a>
-          </div>
-        </div>
-
-        <h3 className="text-xl font-bold text-white group-hover:text-indigo-300 transition-colors font-['Fira_Code',monospace]">
-          {project.title}
-        </h3>
-        <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-          {project.description}
-        </p>
-      </div>
-
-      <div className="relative z-10 flex flex-wrap gap-2 mt-6 pt-4 border-t border-slate-800/60">
-        {project.tags.map((tag, tIndex) => (
-          <span
-            key={tIndex}
-            className="text-xs text-slate-400 bg-slate-800/50 px-2.5 py-1 rounded font-mono"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
-
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [activeDemo, setActiveDemo] = useState(null);
 
   const filteredProjects = activeCategory === "All"
     ? projects
-    : projects.filter((p) => p.category === activeCategory);
+    : projects.filter(p => p.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 relative z-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex flex-col gap-8"
-      >
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <FolderGit2 className="w-6 h-6 text-indigo-400" />
-            <h2 className="text-2xl font-bold text-white tracking-tight font-['Fira_Code',monospace]">
-              Featured Solutions & Projects
-            </h2>
+    <section id="projects" className="py-20 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Section Title */}
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-mono mb-4">
+            <FolderGit2 className="w-3.5 h-3.5" /> Commercial Proof of Concepts
           </div>
-          
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Featured Solutions & Engine Builds
+          </h2>
+          <p className="text-slate-400 text-sm mt-2 max-w-2xl">
+            Production-ready business applications, interactive operational software, and automated workflows engineered for scale.
+          </p>
+        </div>{/* Category Filters */}
+        <div className="flex flex-wrap gap-2 mb-8 border-b border-slate-800 pb-4">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={"px-3 py-1.5 rounded-lg text-xs font-mono transition-all " +
+                (activeCategory === cat
+                  ? "bg-indigo-600 text-white font-semibold"
+                  : "bg-slate-900 text-slate-400 hover:text-white border border-slate-800")}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
-        {/* Option 1: Animated Category Filter Tabs */}
-        <div className="flex flex-wrap gap-2 pt-2 border-b border-slate-800/60 pb-4">{categories.map((cat) => {
-            const isActive = activeCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`relative px-4 py-1.5 text-xs font-mono rounded-full transition-all duration-300 ${
-                  isActive
-                    ? "text-white font-semibold"
-                    : "text-slate-400 hover:text-slate-200 hover:bg-slate-800/40"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-indigo-600/30 border border-indigo-500/50 rounded-full"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-                <span className="relative z-10">{cat}</span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Animated Grid Layout */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6 min-h-[400px]">
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <AnimatePresence>
             {filteredProjects.map((project) => (
-              <Card key={project.title} project={project} />
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 15 }}
+                className="bg-slate-900/60 border border-slate-800 hover:border-slate-700/80 rounded-xl p-6 flex flex-col justify-between transition-all group"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded border border-indigo-500/20">
+                      {project.badgeLabel}
+                    </span>
+                    {project.hasInteractiveDemo && (
+                      <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Demo Ready
+                      </span>
+                    )}
+                  </div>
+
+                  <h3 className="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-slate-400 text-xs mt-2 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="text-[10px] font-mono text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-800/80">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Card Actions */}
+                <div className="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/60">
+                  {project.hasInteractiveDemo ? (
+                    <button
+                      onClick={() => setActiveDemo(project.id)}
+                      className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-semibold py-2 px-3 rounded-lg transition-all"
+                    >
+                      <Play className="w-3.5 h-3.5 fill-current" /> Launch Interactive Demo
+                    </button>
+                  ) : (
+                    <button
+                      disabled
+                      className="flex-1 flex items-center justify-center gap-2 bg-slate-800/50 text-slate-500 text-xs font-mono py-2 px-3 rounded-lg cursor-not-allowed border border-slate-800"
+                    >
+                      <Sparkles className="w-3.5 h-3.5" /> PoC Engine Preview Coming Soon
+                    </button>
+                  )}
+                </div>
+              </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
-      </motion.div>
+        </div>
+
+      </div>{/* Dynamic Demo Modal Overlay */}
+      <AnimatePresence>
+        {activeDemo && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 overflow-y-auto"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-5xl my-auto"
+            >
+              {/* Close Button Header */}
+              <div className="flex justify-end mb-2">
+                <button
+                  onClick={() => setActiveDemo(null)}
+                  className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-700 transition-all shadow-lg"
+                >
+                  <X className="w-4 h-4" /> Close Demo
+                </button>
+              </div>
+
+              {/* Render Selected Demo Component */}
+              {activeDemo === 'inventory' && <InventoryDemo />}
+              {activeDemo === 'pos' && <PosDemo />}
+              {activeDemo === 'realestate' && <RealEstateDemo />}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
