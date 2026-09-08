@@ -4,6 +4,9 @@ import { Sparkles, X, Play } from 'lucide-react';
 import InventoryDemo from './InventoryDemo';
 import PosDemo from './PosDemo';
 import RealEstateDemo from './RealEstateDemo';
+import GymDemo from './GymDemo';
+import PiWeb3Demo from './PiWeb3Demo';
+import AnalyticsDemo from './AnalyticsDemo';
 
 const categories = ["All", "E-Commerce", "FinTech", "PropTech", "Operations", "Analytics"];
 
@@ -45,7 +48,7 @@ const projects = [
     category: "Operations",
     badgeLabel: "Operations Management",
     tags: ["React", "Tailwind CSS", "JavaScript"],
-    hasInteractiveDemo: false,
+    hasInteractiveDemo: true,
     githubUrl: "#"
   },
   {
@@ -55,7 +58,7 @@ const projects = [
     category: "FinTech",
     badgeLabel: "Web3 Integration",
     tags: ["JavaScript", "Pi SDK", "Web3 Payment API"],
-    hasInteractiveDemo: false,
+    hasInteractiveDemo: true,
     githubUrl: "#"
   },
   {
@@ -65,7 +68,7 @@ const projects = [
     category: "Analytics",
     badgeLabel: "Data Analytics",
     tags: ["Python", "JavaScript", "Statsmodels"],
-    hasInteractiveDemo: false,
+    hasInteractiveDemo: true,
     githubUrl: "#"
   }
 ];
@@ -216,6 +219,9 @@ export default function Projects() {
                 {activeDemo === 'inventory' && <InventoryDemo />}
                 {activeDemo === 'pos' && <PosDemo />}
                 {activeDemo === 'realestate' && <RealEstateDemo />}
+                {activeDemo === 'fitness' && <GymDemo />}
+                {activeDemo === 'web3pay' && <PiWeb3Demo />}
+                {activeDemo === 'analytics' && <AnalyticsDemo />}
               </div>
             </motion.div>
           </motion.div>
