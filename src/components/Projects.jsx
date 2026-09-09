@@ -78,20 +78,37 @@ export default function Projects({ activeDemo, setActiveDemo }) {
 
   // Lock body scroll and auto-scroll to projects section when activeDemo opens
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setActiveDemo(null);
+      }
+    };
+
     if (activeDemo) {
       document.body.style.overflow = 'hidden';
+
+      // Listen for Escape Key 
+      window.addEventListener('keydown', handleKeyDown);
+
+      // Push history state to capture mobile back button / swipe back gesture
+      window.history.pushState ({ modalOpen: true }, '');
+      const handlePopState = () => setActiveDemo(null);
+      window.addEventListener('popstate', handlePopState);
+
       const projectSection = document.getElementById('projects');
       if (projectSection) {
         projectSection.scrollIntoView({ behavior: 'smooth' });
       }
+
+      return () => {
+        document.body.style.overflow = 'unset';
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('popstate', handlePopState);
+      };
     } else {
       document.body.style.overflow = 'unset';
     }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [activeDemo]);
+  }, [activeDemo, setActiveDemo]);
 
   const filteredProjects = activeCategory === "All"
     ? projects
@@ -198,24 +215,26 @@ export default function Projects({ activeDemo, setActiveDemo }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-[9999] flex items-center justify-center p-3 sm:p-6"
+            onClick={() => setActiveDemo(null)}
+            className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[9999] flex items-center justify-center p-2 sm:p-6"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="relative w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl my-auto max-h-[85vh] flex flex-col overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl h-[92vh] sm:h-auto sm:max-h-[85vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex-col overflow-hidden"
             >
               {/* Sticky Top Bar for Close Action */}
-              <div className="flex justify-between items-center px-4 sm:px-6 py-3 border-b border-slate-800 bg-slate-900/90 backdrop-blur sticky top-0 z-10 shrink-0">
-                <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-wider">
+              <div className="flex justify-between items-center px-4 py-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-50 shrink-0">
+                <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">
                   Live PoC Preview
                 </span>
                 <button
                   onClick={() => setActiveDemo(null)}
-                  className="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono px-3 py-1.5 rounded-lg border border-slate-700 transition-all"
+                  className="flex items-center gap-1 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-mono px-3 py-1.5 rounded-lg border border-red-500/30 transition-all active:scale-95"
                 >
-                  <X className="w-4 h-4" /> Close Demo
+                  <X className="w-4 h-4" /> Close
                 </button>
               </div>
 

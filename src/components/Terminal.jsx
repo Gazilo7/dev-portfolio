@@ -33,6 +33,7 @@ export default function Terminal({ onOpenDemo }) {
   };
 
   const handleLaunchProject = (projId) => {
+    inputRef.current?.blur();
     if (onOpenDemo) {
       onOpenDemo(projId);
     }
