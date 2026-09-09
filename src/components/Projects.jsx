@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, X, Play } from 'lucide-react';
 import InventoryDemo from './InventoryDemo';
@@ -73,14 +73,17 @@ const projects = [
   }
 ];
 
-export default function Projects() {
+export default function Projects({ activeDemo, setActiveDemo }) {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [activeDemo, setActiveDemo] = useState(null);
 
-  // Lock body scroll when a modal is active
+  // Lock body scroll and auto-scroll to projects section when activeDemo opens
   useEffect(() => {
     if (activeDemo) {
       document.body.style.overflow = 'hidden';
+      const projectSection = document.getElementById('projects');
+      if (projectSection) {
+        projectSection.scrollIntoView({ behavior: 'smooth' });
+      }
     } else {
       document.body.style.overflow = 'unset';
     }
@@ -98,15 +101,16 @@ export default function Projects() {
     <section id="projects" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Section Title */}
-        <div className="mb-12">
+        {/* Section Title */}<div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             Featured Solutions & Engine Builds
           </h2>
           <p className="text-slate-400 text-sm mt-2 max-w-2xl">
             Production-ready business applications, interactive operational software, and automated workflows engineered for scale.
           </p>
-        </div>{/* Category Filters */}
+        </div>
+
+        {/* Category Filters */}
         <div className="flex flex-wrap gap-2 mb-8 border-b border-slate-800 pb-4">
           {categories.map((cat) => (
             <button
@@ -175,8 +179,7 @@ export default function Projects() {
                   ) : (
                     <button
                       disabled
-                      className="flex-1 flex items-center justify-center gap-2 bg-slate-800/50 text-slate-500 text-xs font-mono py-2 px-3 rounded-lg cursor-not-allowed border border-slate-800"
-                    >
+                      className="flex-1 flex items-center justify-center gap-2 bg-slate-800/50 text-slate-500 text-xs font-mono py-2 px-3 rounded-lg cursor-not-allowed border border-slate-800">
                       <Sparkles className="w-3.5 h-3.5" /> PoC Engine Preview Coming Soon
                     </button>
                   )}
@@ -186,7 +189,9 @@ export default function Projects() {
           </AnimatePresence>
         </div>
 
-      </div>{/* Dynamic Demo Modal Overlay */}
+      </div>
+
+      {/* Dynamic Demo Modal Overlay */}
       <AnimatePresence>
         {activeDemo && (
           <motion.div
