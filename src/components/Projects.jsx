@@ -76,7 +76,7 @@ const projects = [
 export default function Projects({ activeDemo, setActiveDemo }) {
   const [activeCategory, setActiveCategory] = useState("All");
 
-  // Lock body scroll and auto-scroll to projects section when activeDemo opens
+  // Lock body scroll, trigger Escape key listener, and capture mobile back button
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -91,16 +91,14 @@ export default function Projects({ activeDemo, setActiveDemo }) {
       window.addEventListener('keydown', handleKeyDown);
 
       // Push history state to capture mobile back button / swipe back gesture
-      window.history.pushState ({ modalOpen: true }, '');
+      window.history.pushState({ modalOpen: true }, '');
       const handlePopState = () => setActiveDemo(null);
       window.addEventListener('popstate', handlePopState);
 
       const projectSection = document.getElementById('projects');
       if (projectSection) {
         projectSection.scrollIntoView({ behavior: 'smooth' });
-      }
-
-      return () => {
+      }return () => {
         document.body.style.overflow = 'unset';
         window.removeEventListener('keydown', handleKeyDown);
         window.removeEventListener('popstate', handlePopState);
@@ -118,7 +116,8 @@ export default function Projects({ activeDemo, setActiveDemo }) {
     <section id="projects" className="py-20 relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         
-        {/* Section Title */}<div className="mb-12">
+        {/* Section Title */}
+        <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
             Featured Solutions & Engine Builds
           </h2>
@@ -186,8 +185,7 @@ export default function Projects({ activeDemo, setActiveDemo }) {
 
                 {/* Card Actions */}
                 <div className="flex items-center gap-3 mt-6 pt-4 border-t border-slate-800/60">
-                  {project.hasInteractiveDemo ? (
-                    <button
+                  {project.hasInteractiveDemo ? (<button
                       onClick={() => setActiveDemo(project.id)}
                       className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-mono font-semibold py-2 px-3 rounded-lg transition-all"
                     >
@@ -216,30 +214,30 @@ export default function Projects({ activeDemo, setActiveDemo }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setActiveDemo(null)}
-            className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[9999] flex items-center justify-center p-2 sm:p-6"
+            className="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-[9999] flex items-center justify-center p-2 pt-16 sm:p-6"
           >
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl h-[92vh] sm:h-auto sm:max-h-[85vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex-col overflow-hidden"
+              className="relative w-full max-w-5xl h-[85dvh] sm:h-auto sm:max-h-[85vh] bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
             >
               {/* Sticky Top Bar for Close Action */}
-              <div className="flex justify-between items-center px-4 py-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-50 shrink-0">
+              <div className="flex justify-between items-center px-4 py-3 border-b border-slate-800 bg-slate-900 shrink-0 z-50">
                 <span className="text-[11px] font-mono text-emerald-400 font-bold uppercase tracking-wider">
                   Live PoC Preview
                 </span>
                 <button
                   onClick={() => setActiveDemo(null)}
-                  className="flex items-center gap-1 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-mono px-3 py-1.5 rounded-lg border border-red-500/30 transition-all active:scale-95"
+                  className="flex items-center gap-1 bg-red-500/10 hover:bg-red-500/20 text-red-400 text-xs font-mono px-3 py-1.5 rounded-lg border border-red-500/30 transition-all active:scale-95 cursor-pointer"
                 >
                   <X className="w-4 h-4" /> Close
                 </button>
               </div>
 
               {/* Internal Scrollable Body */}
-              <div className="p-3 sm:p-6 overflow-y-auto overscroll-contain flex-1">
+              <div className="p-3 sm:p-6 overflow-y-auto overscroll-contain flex-1 touch-pan-y">
                 {activeDemo === 'inventory' && <InventoryDemo />}
                 {activeDemo === 'pos' && <PosDemo />}
                 {activeDemo === 'realestate' && <RealEstateDemo />}

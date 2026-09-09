@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Terminal as TerminalIcon, ChevronRight, Sparkles } from 'lucide-react';
 
-export default function Terminal({ onOpenDemo }) {
+export default function Terminal({ onOpenDemo, activeDemo }) {
   const initialHistory = [
     { type: 'system', content: <span className="text-indigo-400 font-semibold font-['Fira_Code',monospace]">Welcome to Shekwoyinugaza Interactive CLI v2.4.0</span> },
     { type: 'system', content: <span className="text-slate-400 font-['Fira_Code',monospace]">Type "help" or enter a project number (1-6) to interact.</span> }
@@ -28,8 +28,18 @@ export default function Terminal({ onOpenDemo }) {
     }
   }, [history]);
 
+  // Force-blur the terminal input whenever a demo modal is active
+  useEffect(() => {
+    if (activeDemo) {
+      inputRef.current?.blur();
+    }
+  }, [activeDemo]);
+
+  // Only focus input if no modal is active
   const handleTerminalClick = () => {
-    inputRef.current?.focus();
+    if (!activeDemo) {
+      inputRef.current?.focus();
+    }
   };
 
   const handleLaunchProject = (projId) => {
@@ -46,7 +56,6 @@ export default function Terminal({ onOpenDemo }) {
 
       // Check if command is a project number or ID match
       const matchedProject = projectList.find(p => p.num === command || command.includes(p.id));
-
       if (matchedProject) {
         handleLaunchProject(matchedProject.id);
         outputContent = (
@@ -62,10 +71,10 @@ export default function Terminal({ onOpenDemo }) {
                 <span>Available commands:</span>
                 <div className="grid grid-cols-[110px_1fr] pl-4 mt-2 gap-y-1">
                   <span className="text-indigo-300">about</span><span>Learn about me</span>
-                  <span className="text-indigo-300">skills</span><span>Technical stack &amp; tools</span>
-                  <span className="text-indigo-300">projects</span><span>View projects list</span>
+                  <span className="text-indigo-300">skills</span><span>Technical stack &amp; tools</span><span className="text-indigo-300">projects</span><span>View projects list</span>
                   <span className="text-indigo-300">1 - 6</span><span>Directly open project PoC modal</span>
-                  <span className="text-indigo-300">clear</span><span>Reset terminal screen</span></div>
+                  <span className="text-indigo-300">clear</span><span>Reset terminal screen</span>
+                </div>
               </div>
             );
             break;
@@ -93,7 +102,10 @@ export default function Terminal({ onOpenDemo }) {
                 {projectList.map((p) => (
                   <div key={p.id}>
                     <button
-                      onClick={() => handleLaunchProject(p.id)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLaunchProject(p.id);
+                      }}
                       className="text-left font-semibold text-amber-400 hover:text-amber-300 hover:underline inline-flex items-center gap-1.5 cursor-pointer"
                     >
                       {p.num}. {p.title} <span className="text-indigo-400 text-xs">[{p.category}]</span>
@@ -137,8 +149,7 @@ export default function Terminal({ onOpenDemo }) {
 
         <div 
           onClick={handleTerminalClick}
-          className="w-full bg-slate-950/80 backdrop-blur-sm border border-slate-800/80 rounded-xl shadow-2xl overflow-hidden font-mono text-sm cursor-text"
-        >
+          className="w-full bg-slate-950/80 backdrop-blur-sm border border-slate-800/80 rounded-xl shadow-2xl overflow-hidden font-mono text-sm cursor-text">
           <div className="flex items-center px-4 py-3 bg-slate-900/50 border-b border-slate-800/80 select-none">
             <div className="flex gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -146,7 +157,9 @@ export default function Terminal({ onOpenDemo }) {
               <div className="w-3 h-3 rounded-full bg-green-500/80" />
             </div>
             <span className="ml-4 text-xs text-slate-500 font-['Fira_Code',monospace]">guest@shekwoyinugaza: ~</span>
-          </div><div 
+          </div>
+
+          <div 
             ref={containerRef}
             className="p-6 h-[420px] overflow-y-auto flex flex-col gap-4 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent"
           >
