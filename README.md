@@ -1,16 +1,22 @@
-# React + Vite
+# Interactive Developer Portfolio & CLI 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive, high-performance developer portfolio built with React, Vite, and Tailwind CSS. Features a functional CLI terminal, project live previews, and automated client outreach routing.
 
-Currently, two official plugins are available:
+[![Live Demo](https://img.shields.io/badge/Live_Demo-shekwoyinugaza.vercel.app-blue?style=for-the-badge&logo=vercel)](https://shekwoyinugaza.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack & Key Features
 
-## React Compiler
+* Frontend: React, Vite, Tailwind CSS, Lucide React Icons
+* Interactive CLI Terminal: Custom command parser supporting shortcut navigation, interactive about/project triggers, and keyboard shortcuts
+* Contact Integration: Web3Forms serverless form handler for direct inbox routing
+* Performance & UX: Optimized mobile viewports, dynamic modal overlays, and zero-layout-shift responsive design
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 💻 Local Development
 
-## Expanding the ESLint configuration
+Clone the project and run it locally:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+`bash
+git clone [https://github.com/Gazilo7/dev-portfolio.git](https://github.com/Gazilo7/dev-portfolio.git)
+cd dev-portfolio
+npm install
+npm run dev
