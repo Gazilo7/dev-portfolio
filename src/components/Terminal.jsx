@@ -37,8 +37,8 @@ export default function Terminal({ onOpenDemo, activeDemo }) {
 
   // Only focus input if no modal is active
   const handleTerminalClick = () => {
-    if (!activeDemo) {
-      inputRef.current?.focus();
+    if (!activeDemo && inputRef.current) {
+      inputRef.current?.focus({ preventScroll: true });
     }
   };
 
@@ -53,7 +53,7 @@ export default function Terminal({ onOpenDemo, activeDemo }) {
     if (e.key === 'Enter') {
       e.target.blur();
     }
-    
+
     if (e.key === 'Enter' && input.trim()) {
       const command = input.trim().toLowerCase();
       let outputContent = null;
