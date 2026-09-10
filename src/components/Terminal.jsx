@@ -50,6 +50,10 @@ export default function Terminal({ onOpenDemo, activeDemo }) {
   };
 
   const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.target.blur();
+    }
+    
     if (e.key === 'Enter' && input.trim()) {
       const command = input.trim().toLowerCase();
       let outputContent = null;

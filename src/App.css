@@ -186,4 +186,13 @@
 input, select, textarea {
   font-size: 16px !important;
   touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (pointer: coarse) {
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 16px !important;
+  }
 }
