@@ -179,6 +179,7 @@ export default function Terminal({ onOpenDemo, activeDemo }) {
                 onKeyDown={handleKeyDown}
                 placeholder='Type "help" or 1-6...'
                 className="flex-1 bg-transparent outline-none border-none text-slate-100 placeholder-slate-700 focus:ring-0 w-full font-['Fira_Code',monospace]"
+                style={{ fontsize: '16px' }}
                 spellCheck="false"
                 autoComplete="off"
               />
