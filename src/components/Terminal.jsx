@@ -85,7 +85,7 @@ export default function Terminal({ onOpenDemo, activeDemo }) {
           case 'about':
             outputContent = (
               <div className="text-slate-300 mt-1 font-['Fira_Code',monospace] leading-relaxed">
-                Software engineering student specializing in full-stack web applications, database architecture (relational &amp; NoSQL), statistical quantitative modeling, and Web3 SDK integrations.
+                Full-stack & Software Engineer specializing in scalable web applications, dual database architecture (relational & NoSQL), statistical quantitative modeling, and Web3 SDK integrations. Focused on building high-conversion digital platforms and operational business tools.
               </div>
             );
             break;
