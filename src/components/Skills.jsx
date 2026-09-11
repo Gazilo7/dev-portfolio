@@ -6,17 +6,17 @@ export default function Skills() {
     {
       title: 'Languages',
       icon: Code2,
-      skills: ['C++', 'PHP', 'Python', 'SQL', 'JavaScript', 'HTML/CSS']
+      skills: ['JavaScript', 'PHP', 'Python', 'SQL', 'C++', 'HTML/CSS']
     },
     {
       title: 'Tools & Environments',
       icon: Terminal,
-      skills: ['XAMPP', 'VS Code', 'Node.js', 'MongoDB Compass', 'phpMyAdmin', 'Git']
+      skills: ['Git', 'Node.js', 'MongoDB Compass', 'Postman', 'Vercel']
     },
     {
       title: 'Databases & Data',
       icon: Database,
-      skills: ['MySQL', 'MongoDB', 'Statistical Modeling (statsmodels)', 'Data Analysis']
+      skills: ['MySQL', 'MongoDB', 'Statistical Modeling', 'Data Analysis']
     },
     {
       title: 'Frameworks & SDKs',

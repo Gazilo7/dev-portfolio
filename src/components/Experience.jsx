@@ -4,18 +4,18 @@ import { Briefcase, Calendar } from 'lucide-react';
 export default function Experience() {
   const experiences = [
     {
-      role: 'Software Engineering & Computer Science',
-      institution: 'Higher Education / Technical Training',
-      period: '2025 - Present',
-      description: 'Focused on core software development, data analysis, database design, and building modular local server environments.',
-      highlights: ['Statistical data modeling with Python', 'Backend scripting with PHP & SQL', 'Local server architecture using XAMPP']
-    },
-    {
       role: 'Full-Stack Web & Commercial Solutions',
       institution: 'Independent Projects & Freelance Builds',
       period: '2025 - Present',
       description: 'Architecting business platforms, point-of-sale systems, and interactive web tools tailored for client workflows and Web3 integration.',
-      highlights: ['Custom business management platforms (POS, Inventory, PropTech)', 'Pi Network SDK integration for authentication & testnet payments', 'Responsive UI development with Tailwind CSS & React']
+      highlights: ['Custom business management platforms (POS, Inventory, PropTech)', 'Pi Network SDK integration for authentication & testnet payments', 'Responsive UI development using Tailwind CSS & React']
+    },
+    {
+      role: 'Software Engineering & Computer Science',
+      institution: 'Higher Education / Technical Training',
+      period: '2025 - Present',
+      description: 'Focused on core software development, data analysis, database design, and building modular local server environments.',
+      highlights: ['Statistical data modeling with Python', 'Backend scripting with PHP & SQL', 'Relational & NoSQL database management (MySQL, MongoDB)']
     }
   ];
 
