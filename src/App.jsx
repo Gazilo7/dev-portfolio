@@ -33,7 +33,7 @@ export default function App() {
         <Skills />
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full space-y-24">
           <Projects activeDemo={activeDemo} setActiveDemo={setActiveDemo} />
-          <Terminal onOpenDemo={(id) => setActiveDemo(id)} />
+          <Terminal onOpenDemo={(id) => setActiveDemo(id)} activeDemo={activeDemo} />
           <Contact />
         </div>
       </main>

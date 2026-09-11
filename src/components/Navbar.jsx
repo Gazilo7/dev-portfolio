@@ -21,12 +21,15 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto glass-panel px-6 py-3 flex items-center justify-between relative">
         {/* Brand Logo */}
-        <a href="#" className="flex items-center gap-2 font-bold text-lg text-white group">
-          <div className="p-2 rounded-lg bg-indigo-600/20 text-indigo-400 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
-            <Sparkles className="w-5 h-5" />
-          </div>
-          <span>Dev<span className="text-indigo-400">Hub</span></span>
-        </a>
+        {/* Brand Logo */}
+<a href="#hero" className="flex items-center gap-2 font-bold text-lg text-white group">
+  <img 
+    src="/favicon.jpg" 
+    alt="Profile" 
+    className="w-8 h-8 rounded-lg object-cover border border-slate-700 group-hover:border-indigo-500 transition-all duration-300" 
+  />
+  <span>Dev<span className="text-indigo-400">Hub</span></span>
+</a>
 
         {/* Desktop Links */}
         <nav className="hidden md:flex items-center gap-6">

@@ -13,7 +13,7 @@ export default function Experience() {
     {
       role: 'Software Engineering & Computer Science',
       institution: 'Higher Education / Technical Training',
-      period: '2025 - Present',
+      period: '',
       description: 'Focused on core software development, data analysis, database design, and building modular local server environments.',
       highlights: ['Statistical data modeling with Python', 'Backend scripting with PHP & SQL', 'Relational & NoSQL database management (MySQL, MongoDB)']
     }
@@ -51,7 +51,7 @@ export default function Experience() {
             >
               {/* Continuous Rotating Border Effect */}
               <motion.div
-                className="absolute inset-[-100%] opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-[-100%] opacity-40 group-hover:opacity-100 transition-opacity duration-500 tranform-gpu"
                 style={{
                   background: 'conic-gradient(from 0deg, transparent 0 300deg, #6366f1 360deg)'
                 }}
@@ -76,10 +76,12 @@ export default function Experience() {
                       </h3><p className="text-indigo-300 text-sm font-medium">{exp.institution}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800 w-fit">
-                    <Calendar className="w-3.5 h-3.5 text-indigo-400" />
-                    <span>{exp.period}</span>
-                  </div>
+                 {exp.period && (
+  <div className="flex items-center gap-1.5 text-xs font-mono text-slate-400 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-800 w-fit">
+    <Calendar className="w-3.5 h-3.5 text-indigo-400" />
+    <span>{exp.period}</span>
+  </div>
+)}
                 </div>
 
                 <p className="text-slate-300 text-sm leading-relaxed">{exp.description}</p>

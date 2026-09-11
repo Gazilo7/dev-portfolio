@@ -18,7 +18,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-2"
           >
-            <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight font-['Fira_Code',monospace]">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight font-['Fira_Code',monospace] break-words">
               {myName}
             </h1>
             <p className="text-xl font-medium text-indigo-400 font-['Fira_Code',monospace]">
@@ -36,25 +36,27 @@ export default function Hero() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
-          >
-            <a
-              href="#terminal"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium transition-all w-full sm:w-auto"
-            >
-              Launch CLI <ChevronRight className="w-4 h-4" />
-            </a>
-            <a
-              href="#projects"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 transition-all w-full sm:w-auto"
-            >
-              Explore Projects
-            </a>
-          </motion.div>
-        </div>
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 0.3 }}
+    className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2"
+  >
+    {/* Explore Projects - Now the PRIMARY button */}
+    <a
+      href="#projects"
+      className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-medium transition-all w-full sm:w-auto"
+    >
+      Explore Projects
+    </a>
+    {/* Launch CLI - Now the SECONDARY button */}
+    <a
+      href="#terminal"
+      className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 transition-all w-full sm:w-auto"
+    >
+      Launch CLI <ChevronRight className="w-4 h-4" />
+    </a>
+  </motion.div>
+</div>
 
         {/* Right Column: Profile Picture Frame */}
         <motion.div
