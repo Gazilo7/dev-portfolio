@@ -51,7 +51,7 @@ export default function Experience() {
             >
               {/* Continuous Rotating Border Effect */}
               <motion.div
-                className="absolute inset-[-100%] opacity-40 group-hover:opacity-100 transition-opacity duration-500 tranform-gpu"
+                className="absolute inset-[-100%] opacity-40 group-hover:opacity-100 transition-opacity duration-500 transform-gpu"
                 style={{
                   background: 'conic-gradient(from 0deg, transparent 0 300deg, #6366f1 360deg)'
                 }}
