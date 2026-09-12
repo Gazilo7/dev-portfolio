@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useState, useEffect } from 'react';
 import GlowBackground from './components/GlowBackground';
 import Navbar from './components/Navbar';
@@ -40,6 +41,9 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Vercel Analytics Tracker */}
+      <Analytics />
     </div>
   );
 }
